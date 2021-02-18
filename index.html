@@ -4,11 +4,13 @@
     <head>
         <title>Sunset Calculator</title>
         <link rel="stylesheet" type="text/css" href="index.css">
+        <script src="assets/js/sunburst.iife.js"></script>
+        <script src="index.js"></script>
     </head>
 
     <body>
         <h1 id = "title" class = "title">sunset calculator</h1>
-        <form class="form-inline" action="/action_page.php">
+        <form class="form-inline">
             <label for="zip">Zip Code:</label>
             <input type="text" id="zip" name="zip" pattern="[0-9]{5}"> <br><br>
 
@@ -65,10 +67,6 @@
             </script>
 
             <br>
-            <input type="submit" value="Submit">
         </form>
-
-        <input type = "button" value = "buton" onclick="getCoordinates()">
-        <script src="index.js"></script>
     </body>
 </html>
