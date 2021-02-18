@@ -7,50 +7,64 @@
     </head>
 
     <body>
-        <h1>test</h1>
+        <h1 id = "title" class = "title">sunset calculator</h1>
         <form class="form-inline" action="/action_page.php">
             <label for="zip">Zip Code:</label>
             <input type="text" id="zip" name="zip"><br><br>
 
             <div class="choice">
-                <label style = "color:black;" for="day1">day1</label>
+                <label id = "day-1" style = "color:black;" for="day1">day1</label>
                 <br>
-                <input type="checkbox" id="day1"
+                <input type="checkbox" id="day-1"
                 name="option" value="1">
             </div>
             <div class="choice">
-                <label style = "color:black;" for="day2">day2</label>
+                <label id = "day" style = "color:black;" for="day2">day2</label>
                 <br>
-                <input type="checkbox" id="day2"
+                <input type="checkbox" id="day"
                 name="option" value="2">
             </div>
             <div class="choice">
-                <label style = "color:black;" for="day3">day3</label>
+                <label id = "day1" style = "color:black;" for="day3">day3</label>
                 <br>
-                <input type="checkbox" id="day3"
+                <input type="checkbox" id="day1"
                 name="option" value="3">
             </div>
             <div class="choice">
-                <label style = "color:black;" for="day4">day4</label>
+                <label id = "day2" style = "color:black;" for="day4">day4</label>
                 <br>
-                <input type="checkbox" id="day4"
+                <input type="checkbox" id="day2"
                 name="option" value="4">
             </div>
             <div class="choice">
-                <label style = "color:black;" for="day5">day5</label>
+                <label id = "day3" style = "color:black;" for="day5">day5</label>
                 <br>
-                <input type="checkbox" id="day5"
+                <input type="checkbox" id="day3"
                 name="option" value="5">
             </div>
 
             <br><br>
             <div class="choice">
-                <label style = "color:black;" for="ranking">ranking</label>
+                <label id = "day4" style = "color:black;" for="ranking">ranking</label>
                 <br>
                 <input type="checkbox" id="ranking"
                 name="option" value="1">
             </div>
 
+            <script language="javascript" type="text/javascript">  
+                var date = new Date();
+                var day = (date.getDay() + 6) % 7;
+
+                var days = ["s", "m", "t", "w", "t", "f", "s"];
+
+                document.getElementById("day-1").innerHTML = days[day];
+                document.getElementById("day").innerHTML = days[(day+1)%7];
+                document.getElementById("day1").innerHTML = days[(day+2)%7];
+                document.getElementById("day2").innerHTML = days[(day+3)%7];
+                document.getElementById("day3").innerHTML = days[(day+4)%7];
+            </script>
+
+            <br>
             <input type="submit" value="Submit">
         </form>
     </body>

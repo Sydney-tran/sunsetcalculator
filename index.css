@@ -2,6 +2,13 @@ input {
     display:inline;
 }
 
+.title {
+    text-align: center;
+    font-size:40px;
+    letter-spacing: 10px;
+    color: #17004a;
+}
+
 body {
     font-family: "Raleway", sans-serif;
     background-image: url("https://www.itl.cat/pngfile/big/46-460589_pale-pink-wallpaper-pale-pink.jpg");
