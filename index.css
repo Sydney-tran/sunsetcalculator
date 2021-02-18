@@ -4,18 +4,27 @@ input {
 
 .title {
     text-align: center;
+    font-family: "Comfortaa", cursive;
     font-size:40px;
     letter-spacing: 10px;
     color: #17004a;
 }
 
 body {
-    font-family: "Raleway", sans-serif;
+    font-family: "Comfortaa", cursive;
     background-image: url("https://www.itl.cat/pngfile/big/46-460589_pale-pink-wallpaper-pale-pink.jpg");
 }
 
-.form-inline {
-    display: flex;
+input {
+    margin-right: 100px;
+}
+
+.inputs {
+    display: table;
+}
+
+.choice {
+    display: table-cell;
     flex-flow: row wrap;
     align-items: center;
 }
@@ -24,3 +33,18 @@ body {
 .form-inline label {
     margin: 5px 10px 5px 0;
 }
+
+button {
+    background-color: 	#a8efff;
+    border: none;
+    color: rgb(0, 47, 61);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 15px;
+    width: 180px;
+    cursor: pointer;
+  }

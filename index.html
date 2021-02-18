@@ -4,12 +4,20 @@
     <head>
         <title>Sunset Calculator</title>
         <link rel="stylesheet" type="text/css" href="index.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+        </style>
+        <script src="assets/js/sunburst.iife.js"></script>
+        <script src="index.js"></script>
     </head>
 
     <body>
+        <div class = "body-content"></div>
+
         <h1 id = "title" class = "title">sunset calculator</h1>
-        <form class="form-inline" action="/action_page.php">
-            <label for="zip">Zip Code:</label>
+
+        <div class = "inputs">
+            <label for="zip">Zip Code:  </label>
             <input type="text" id="zip" name="zip" pattern="[0-9]{5}"> <br><br>
 
             <div class="choice">
@@ -45,7 +53,7 @@
 
             <br><br>
             <div class="choice">
-                <label id = "day4" style = "color:black;" for="ranking">ranking</label>
+                <label id = "ranking" style = "color:black;" for="ranking">ranking</label>
                 <br>
                 <input type="checkbox" id="ranking"
                 name="option" value="1">
@@ -55,7 +63,7 @@
                 var date = new Date();
                 var day = (date.getDay() + 6) % 7;
 
-                var days = ["s", "m", "t", "w", "t", "f", "s"];
+                var days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
                 document.getElementById("day-1").innerHTML = days[day];
                 document.getElementById("day").innerHTML = days[(day+1)%7];
@@ -65,10 +73,10 @@
             </script>
 
             <br>
-            <input type="submit" value="Submit">
-        </form>
+        </div>
 
-        <input type = "button" value = "buton" onclick="getCoordinates()">
-        <script src="index.js"></script>
+        <div style="text-align:center;">
+            <button class="button" id="submit" onclick="submit_form()">submit</button>
+        </div>
     </body>
 </html>
