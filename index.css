@@ -1,0 +1,19 @@
+input {
+    display:inline;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    background-image: url("https://www.itl.cat/pngfile/big/46-460589_pale-pink-wallpaper-pale-pink.jpg");
+}
+
+.form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+/* Add some margins for each label */
+.form-inline label {
+    margin: 5px 10px 5px 0;
+}
