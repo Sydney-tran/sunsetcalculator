@@ -38,9 +38,14 @@ function calculate(location){
         // as some queries may have still succeeded.
         return console.error(error);
       }
-      collection.features.forEach(({ properties }) => {
-        console.log(properties);
-      });
+      window.location.href = "https://sydney-tran.github.io/sunsetcalculator/results.html";
+      // window.location.href = "results.html";
+      // collection.features.forEach(({ properties }) => {
+      //   console.log(properties);
+      // });
+      var properties = collection.features[0].properties;
+      localStorage.setItem("quality", properties.quality);
+      localStorage.setItem("percent", properties.qualityPercent);
     });
   } catch (ex) {
     // Handle general network or parsing errors.

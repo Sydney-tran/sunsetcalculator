@@ -37,6 +37,10 @@
         </script>
         </h1>
 
+        <div id = "quality">
+            Quality:
+        </div>
+
         <div id = "percent">
             Percent:
         </div>
@@ -44,6 +48,12 @@
         <div id = "description">
             Description: 
         </div>
+
+        <script language="javascript" type="text/javascript"> 
+            var storage = window.localStorage;
+            document.getElementById("quality").innerHTML = storage.getItem("quality");
+            document.getElementById("percent").innerHTML = storage.getItem("percent")+"%";
+        </script>
 
         <!-- percent, description -->
     </body>
