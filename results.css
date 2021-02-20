@@ -1,0 +1,12 @@
+.title {
+    text-align: center;
+    font-family: "Comfortaa", cursive;
+    font-size:40px;
+    letter-spacing: 10px;
+    color: #17004a;
+}
+
+body {
+    font-family: "Comfortaa", cursive;
+    background-image: url("https://www.itl.cat/pngfile/big/46-460589_pale-pink-wallpaper-pale-pink.jpg");
+}

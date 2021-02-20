@@ -38,8 +38,8 @@ function calculate(location){
         // as some queries may have still succeeded.
         return console.error(error);
       }
-      window.location.href = "https://sydney-tran.github.io/sunsetcalculator/results.html";
-      // window.location.href = "results.html";
+      //window.location.href = "https://sydney-tran.github.io/sunsetcalculator/results.html";
+      window.location.href = "results.html";
       // collection.features.forEach(({ properties }) => {
       //   console.log(properties);
       // });

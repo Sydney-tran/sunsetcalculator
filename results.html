@@ -3,6 +3,10 @@
 <html>
     <head>
         <title>Results</title>
+        <link rel="stylesheet" type="text/css" href="results.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+        </style>
     </head>
 
     <body>
@@ -51,8 +55,36 @@
 
         <script language="javascript" type="text/javascript"> 
             var storage = window.localStorage;
-            document.getElementById("quality").innerHTML = storage.getItem("quality");
+            var quality = storage.getItem("quality");
+            document.getElementById("quality").innerHTML = quality;
             document.getElementById("percent").innerHTML = storage.getItem("percent")+"%";
+
+            switch(quality) {
+                case "Poor":
+                    document.getElementById("description").innerHTML = "Little to no color, with precipitation or a thick cloud layer often blocking a direct view of the sun.";
+                    document.body.style.backgroundImage = "url(https://media-cdn.tripadvisor.com/media/photo-s/09/5c/1c/a7/ocean-vagabond.jpg)";
+                    break;
+                case "Fair":
+                    document.getElementById("description").innerHTML = "Some color for a short time, with conditions ranging from mostly cloudy, or hazy, to clear, with little to no clouds at all levels.";
+                    document.body.style.backgroundImage = "url(https://cdn.discordapp.com/attachments/445910504104263680/812501214683463690/IMG_0202.JPG)";
+                    break;
+                case "Good":
+                    document.getElementById("description").innerHTML = "A fair amount of color, often multi-colored, lasting a considerable amount of time. Often caused by scattered clouds at multiple levels.";
+                    document.body.style.backgroundImage = "url(https://theknow.denverpost.com/wp-content/uploads/2020/08/IMG_4252.jpg)";
+                    break;
+                case "Great":
+                    document.getElementById("description").innerHTML = "Extremely vibrant color lasting 30 minutes or more. Often caused by multiple arrangements of clouds at multiple levels, transitioning through multiple stages of vivid color.";
+                    document.body.style.backgroundImage = "url(https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/1-pink-sunset-or-sunrise-with-beautiful-clouds-on-the-sky-ioan-panaite.jpg)";
+                    break;
+                default:
+                    document.body.style.backgroundImage = "url(https://static.wikia.nocookie.net/jujutsu-kaisen/images/3/34/Fushiguro_using_Toads_Bottomless_Well.png/revision/latest?cb=20181112220406)";
+                    document.getElementById("description").innerHTML = "huh???";
+                    break;
+            }
+
+            document.body.style.backgroundRepeat = "no-repeat";
+            // document.body.style.backgroundPosition = "center";
+            document.body.style.backgroundSize = "cover";
         </script>
 
         <!-- percent, description -->
