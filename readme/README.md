@@ -1,3 +1,8 @@
 # sunsetcalculator
 
-"access_token":"9f0d7770-9998-4057-beaf-8f3f0367272a","token_type":"Bearer","expires_in":604800,"scope":"predictions","session":{"client_id":"bf93f620-0b68-423e-9563-547f7b1055da","client_secret":"6qIhM2pOvazrecKC8i3nSvAy11a50Jr4","scope":"predictions"}}
+curl -X "POST" "https://sunburst.sunsetwx.com/v1/login" \
+  -u "abcdefghijklm:nopqrstuvwxyz" \
+  -d "grant_type=password" \
+  -d "type=remember_me"
+
+"access_token":"1dbe6149-1172-49d1-8600-041967a90844","token_type":"Bearer","expires_in":604800,"scope":"predictions","session":{"client_id":"4adb33b3-ae84-4c90-b9e9-92ddc5eb27af","client_secret":"arugvbnbvqlowkTHAwzcMTGIa767EqzQ","scope":"predictions"}}
