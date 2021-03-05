@@ -1,6 +1,6 @@
 let sunburst = new SunburstJS({
-  clientId: '4adb33b3-ae84-4c90-b9e9-92ddc5eb27af',
-  clientSecret: 'arugvbnbvqlowkTHAwzcMTGIa767EqzQ',
+  clientId: '8e89c6b9-b491-4071-b669-1a990fae1d19',
+  clientSecret: 'IKTxQv9ztTR54Ty23pfjNOgTKkw4Dv1y',
   scope: ['predictions']
 });
 
