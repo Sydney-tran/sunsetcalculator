@@ -71,3 +71,32 @@ function calculateSunset(){
       calculate(location);
     });
 }
+
+function getDays() {
+  // var days = [];
+
+  // if (document.getElementById("day-1").checked) {
+  //   days.push(-1);
+  // }
+  // if (document.getElementById("day").checked) {
+  //   days.push(0);
+  // }
+  // if (document.getElementById("day1").checked) {
+  //   days.push(1);
+  // }
+  // if (document.getElementById("day2").checked) {
+  //   days.push(2);
+  // }
+  // if (document.getElementById("day3").checked) {
+  //   days.push(3);
+  // }
+
+  var i = -1;
+  for(i; i <= 3; i++) {
+    if (document.getElementById("day" + i).checked) {
+      days.push(i);
+    }
+  }
+
+  return days;
+}
