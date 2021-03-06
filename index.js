@@ -54,7 +54,7 @@ function calculate(location, days){
         day: dayNames[date.getDay()],
         time: hour + ":" + minute + " EST",
         quality: properties.quality,
-        percent: percent,
+        percent: percent + "%",
         description: descriptions[dimgindex],
         image: images[dimgindex],
       });
@@ -62,7 +62,8 @@ function calculate(location, days){
       index++;
 
     });
-    localStorage.setItem("results", results);
+    localStorage.setItem("results", JSON.stringify(results));
+    // console.log(results);
 
   } catch (ex) {
     // Handle general network or parsing errors.

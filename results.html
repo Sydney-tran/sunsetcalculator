@@ -11,92 +11,18 @@
     </head>
 
     <body>
-        <h1>
         <script language="javascript" type="text/javascript">  
-            var date = new Date();
-            var day = date.getDay();
+            var data = window.localStorage.getItem("results");
+            var results = JSON.parse(data);
 
-            switch(day) {
-                case 0:
-                    document.write("sunday");
-                    break;
-                case 1:
-                    document.write("monday");
-                    break;
-                case 2:
-                    document.write("tuesday");
-                    break;
-                case 3:
-                    document.write("wednesday");
-                    break;
-                case 4:
-                    document.write("thursday");
-                    break;
-                case 5:
-                    document.write("friday");
-                    break;
-                case 6:
-                    document.write("saturday");
-                    break;
+            for(var i = 0; i < results.length; i++) {
+                document.write("<h1>" + results[i].day + "</h1>");
+                document.write("<div class = 'time'>" + results[i].time + "</div>");
+                document.write("<div class = 'quality'>" + results[i].quality + "</div>");
+                document.write("<div class = 'percent'>" + results[i].percent + "</div>");
+                document.write("<div class = 'description'>" + results[i].description + '</div>');
             }
         </script>
-        </h1>
 
-        <div id = "time">
-            Time: 
-        </div>
-
-        <div id = "quality" class = "sunset-quality">
-            Quality:
-        </div>
-        <br/>
-
-        <div id = "percent" class = "sunset-property">
-            Percent:
-        </div>
-        <br/>
-
-        <div id = "description" class = "sunset-description">
-            Description: 
-        </div>
-
-        <script language="javascript" type="text/javascript"> 
-            var storage = window.localStorage;
-            var time = storage.getItem("time");
-            var quality = storage.getItem("quality");
-            var percent = storage.getItem("percent");
-            document.getElementById("time").innerHTML = time;
-            document.getElementById("quality").innerHTML = quality;
-            document.getElementById("percent").innerHTML = percent+"%";
-
-            switch(quality) {
-                case "Poor":
-                    document.getElementById("description").innerHTML = "Little to no color, with precipitation or a thick cloud layer often blocking a direct view of the sun.";
-                    document.body.style.backgroundImage = "url(img/poor.jpg)";
-                    break;
-                case "Fair":
-                    document.getElementById("description").innerHTML = "Some color for a short time, with conditions ranging from mostly cloudy, or hazy, to clear, with little to no clouds at all levels.";
-                    document.body.style.backgroundImage = "url(img/fair.jpg)";
-                    break;
-                case "Good":
-                    document.getElementById("description").innerHTML = "A fair amount of color, often multi-colored, lasting a considerable amount of time. Often caused by scattered clouds at multiple levels.";
-                    document.body.style.backgroundImage = "url(img/good.png)";
-                    break;
-                case "Great":
-                    document.getElementById("description").innerHTML = "Extremely vibrant color lasting 30 minutes or more. Often caused by multiple arrangements of clouds at multiple levels, transitioning through multiple stages of vivid color.";
-                    document.body.style.backgroundImage = "url(img/great.jpg)";
-                    break;
-                default:
-                    document.body.style.backgroundImage = "url(https://static.wikia.nocookie.net/jujutsu-kaisen/images/3/34/Fushiguro_using_Toads_Bottomless_Well.png/revision/latest?cb=20181112220406)";
-                    document.getElementById("description").innerHTML = "huh???";
-                    break;
-            }
-
-            document.body.style.backgroundRepeat = "no-repeat";
-            // document.body.style.backgroundPosition = "center";
-            document.body.style.backgroundSize = "cover";
-        </script>
-
-        <!-- percent, description -->
     </body>
 </html>
