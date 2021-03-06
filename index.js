@@ -24,25 +24,46 @@ function calculate(location, days){
     window.location.href = "results.html";
 
     var results = [];
+    var dayNames = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+    var descriptions = ["Little to no color, with precipitation or a thick cloud layer often blocking a direct view of the sun.", 
+                        "Some color for a short time, with conditions ranging from mostly cloudy, or hazy, to clear, with little to no clouds at all levels.",
+                        "A fair amount of color, often multi-colored, lasting a considerable amount of time. Often caused by scattered clouds at multiple levels.", 
+                        "Extremely vibrant color lasting 30 minutes or more. Often caused by multiple arrangements of clouds at multiple levels, transitioning through multiple stages of vivid color."];
+    var images = ["url(img/poor.jpg)", "url(img/fair.jpg)", "url(img/good.jpg)", "url(img/great.jpg)"];
+    var index = 0;
     resp.forEach(({ collection, error }) => {
       if (error) {
         // Handle individual query errors separately,
         // as some queries may have still succeeded.
         return console.error(error);
       }
+      var date = new Date();
+      date.setDate(today.getDate() + days[index]);
+      
       var properties = collection.features[0].properties;
+      
       var time = properties.validAt;
       var hour = (parseInt(time.substring(11, 13)) + 7) % 12;
       hour = hour == 0 ? 12 : hour;
       var minute = parseInt(time.substring(14, 16));
+
+      var percent  = properties.qualityPercent;
+      var dimgindex = Math.floor(percent / 25);
+
       results.push({
+        day: dayNames[date.getDay()],
+        time: hour + ":" + minute + " EST",
         quality: properties.quality,
-        percent: properties.qualityPercent,
-        time: hour + ":" + minute + "EST",
+        percent: percent,
+        description: descriptions[dimgindex],
+        image: images[dimgindex],
       });
+
+      index++;
+
     });
     localStorage.setItem("results", results);
- 
+
   } catch (ex) {
     // Handle general network or parsing errors.
     return console.error(ex);
@@ -57,36 +78,36 @@ function calculateSunset(){
     .then(response => response.json())
     .then(data => {
       const location = data.results[0].geometry.location;
-      var days = getDays;
+      var days = getDays();
       calculate(location, days);
     });
 }
 
 function getDays() {
-  // var days = [];
+  var days = [];
 
-  // if (document.getElementById("day-1").checked) {
-  //   days.push(-1);
-  // }
-  // if (document.getElementById("day").checked) {
-  //   days.push(0);
-  // }
-  // if (document.getElementById("day1").checked) {
-  //   days.push(1);
-  // }
-  // if (document.getElementById("day2").checked) {
-  //   days.push(2);
-  // }
-  // if (document.getElementById("day3").checked) {
-  //   days.push(3);
-  // }
-
-  var i = -1;
-  for(i; i <= 3; i++) {
-    if (document.getElementById("day" + i).checked) {
-      days.push(i);
-    }
+  if (document.getElementById("day-1").checked) {
+    days.push(-1);
   }
+  if (document.getElementById("day").checked) {
+    days.push(0);
+  }
+  if (document.getElementById("day1").checked) {
+    days.push(1);
+  }
+  if (document.getElementById("day2").checked) {
+    days.push(2);
+  }
+  if (document.getElementById("day3").checked) {
+    days.push(3);
+  }
+
+  // var i = -1;
+  // for(i; i <= 3; i++) {
+  //   if (document.getElementById("day" + i).checked) {
+  //     days.push(i);
+  //   }
+  // }
 
   return days;
 }

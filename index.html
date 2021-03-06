@@ -22,27 +22,27 @@
             <input type="text" id="zip" name="zip" pattern="[0-9]{5}"> <br><br>
 
             <div class="choice">
-                <label id = "day-1" style = "color:black;" for="day1">day1</label>
+                <label id = "lday-1" style = "color:black;" for="day1">day1</label>
                 <br>
                 <input type="checkbox" id="day-1" name="option" value="1">
             </div>
             <div class="choice">
-                <label id = "day" style = "color:black;" for="day2">day2</label>
+                <label id = "lday" style = "color:black;" for="day2">day2</label>
                 <br>
                 <input type="checkbox" id="day" name="option" value="2">
             </div>
             <div class="choice">
-                <label id = "day1" style = "color:black;" for="day3">day3</label>
+                <label id = "lday1" style = "color:black;" for="day3">day3</label>
                 <br>
                 <input type="checkbox" id="day1" name="option" value="3">
             </div>
             <div class="choice">
-                <label id = "day2" style = "color:black;" for="day4">day4</label>
+                <label id = "lday2" style = "color:black;" for="day4">day4</label>
                 <br>
                 <input type="checkbox" id="day2" name="option" value="4">
             </div>
             <div class="choice">
-                <label id = "day3" style = "color:black;" for="day5">day5</label>
+                <label id = "lday3" style = "color:black;" for="day5">day5</label>
                 <br>
                 <input type="checkbox" id="day3" name="option" value="5">
             </div>
@@ -60,11 +60,11 @@
 
                 var days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
-                document.getElementById("day-1").innerHTML = days[day];
-                document.getElementById("day").innerHTML = days[(day+1)%7];
-                document.getElementById("day1").innerHTML = days[(day+2)%7];
-                document.getElementById("day2").innerHTML = days[(day+3)%7];
-                document.getElementById("day3").innerHTML = days[(day+4)%7];
+                document.getElementById("lday-1").innerHTML = days[day];
+                document.getElementById("lday").innerHTML = days[(day+1)%7];
+                document.getElementById("lday1").innerHTML = days[(day+2)%7];
+                document.getElementById("lday2").innerHTML = days[(day+3)%7];
+                document.getElementById("lday3").innerHTML = days[(day+4)%7];
             </script>
 
             <br>
