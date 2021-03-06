@@ -46,6 +46,12 @@ function calculate(location){
       var properties = collection.features[0].properties;
       localStorage.setItem("quality", properties.quality);
       localStorage.setItem("percent", properties.qualityPercent);
+      var time = properties.validAt;
+      var hour = (parseInt(time.substring(11, 13)) - 5) % 12;
+      hour = hour == 0 ? 12 : hour;
+      var minute = parseInt(time.substring(14, 16));
+      localStorage.setItem("time", hour+":"+minute);
+
     });
   } catch (ex) {
     // Handle general network or parsing errors.
