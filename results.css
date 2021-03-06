@@ -2,20 +2,50 @@ body {
     font-family: GidolinyaRegular;
     color: white;
     background-image: url("https://www.itl.cat/pngfile/big/46-460589_pale-pink-wallpaper-pale-pink.jpg");
-    text-align: center;
-}
-
-h1 {
-    font-size: 100px;
-    font-weight: bold;
-    letter-spacing: 40px;
-}
-
-.quality {
-    font-weight: bold;
 }
 
 @font-face {
     font-family: gidole;
     src: url('/GidoleFont/Gidole-Regular.ttf');
+}
+
+.day {
+    top: 30%;
+    font-size: 100px;
+    font-weight: bold;
+    letter-spacing: 40px;
+}
+
+.time {
+    top: 40%;
+}
+
+.quality {
+    top: 50%;
+    font-weight: bold;
+}
+
+.percent {
+    top: 60%;
+}
+
+.description {
+    top: 70%;
+}
+
+.properties {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
 }

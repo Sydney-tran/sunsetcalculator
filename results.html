@@ -16,11 +16,14 @@
             var results = JSON.parse(data);
 
             for(var i = 0; i < results.length; i++) {
-                document.write("<h1>" + results[i].day + "</h1>");
+                document.write("<div class = 'properties'>");
+                document.write("<div class = 'day'>" + results[i].day + "</div>");
                 document.write("<div class = 'time'>" + results[i].time + "</div>");
                 document.write("<div class = 'quality'>" + results[i].quality + "</div>");
                 document.write("<div class = 'percent'>" + results[i].percent + "</div>");
                 document.write("<div class = 'description'>" + results[i].description + '</div>');
+                document.write("</div>");
+                document.write("<img src = " + results[i].image + ">");
             }
         </script>
 
