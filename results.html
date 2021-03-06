@@ -41,6 +41,10 @@
         </script>
         </h1>
 
+        <div id = "time">
+            Time: 
+        </div>
+
         <div id = "quality">
             Quality:
         </div>
@@ -55,9 +59,12 @@
 
         <script language="javascript" type="text/javascript"> 
             var storage = window.localStorage;
+            var time = storage.getItem("time");
             var quality = storage.getItem("quality");
+            var percent = storage.getItem("percent");
+            document.getElementById("time").innerHTML = time;
             document.getElementById("quality").innerHTML = quality;
-            document.getElementById("percent").innerHTML = storage.getItem("percent")+"%";
+            document.getElementById("percent").innerHTML = percent+"%";
 
             switch(quality) {
                 case "Poor":
