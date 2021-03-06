@@ -47,10 +47,10 @@ function calculate(location){
       localStorage.setItem("quality", properties.quality);
       localStorage.setItem("percent", properties.qualityPercent);
       var time = properties.validAt;
-      var hour = (parseInt(time.substring(11, 13)) - 5) % 12;
+      var hour = (parseInt(time.substring(11, 13)) + 7) % 12;
       hour = hour == 0 ? 12 : hour;
       var minute = parseInt(time.substring(14, 16));
-      localStorage.setItem("time", hour+":"+minute);
+      localStorage.setItem("time", hour+":"+minute + " EST");
 
     });
   } catch (ex) {
