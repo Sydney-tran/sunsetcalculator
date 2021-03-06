@@ -5,54 +5,44 @@ let sunburst = new SunburstJS({
 });
 
 // https://github.com/sunsetwx/sunburst.js
-function calculate(location){
+function calculate(location, days){
   (async () => {
   try {
-    const now = new Date();
-    const thisTimeTomorrow = now.setDate(now.getDate() + 1);
-
-    const resp = await sunburst.batchQuality([
-      {
+    const today = new Date();
+    var inputs = [];
+    for (var i = 0; i < days.length; i++) {
+      var date = new Date();
+      inputs.push({
         geo: [location.lat, location.lng],
-        type: 'sunset'
-      },
-      // {
-      //   geo: [40.7933949, -77.8600012],
-      //   type: 'sunset'
-      // },
-      // {
-      //   geo: [40.7933949, -77.8600012],
-      //   type: 'sunrise',
-      //   after: thisTimeTomorrow
-      // },
-      // {
-      //   geo: [40.7933949, -77.8600012],
-      //   type: 'sunset',
-      //   after: thisTimeTomorrow
-      // }
-    ]);
+        type: 'sunset',
+        after: date.setDate(today.getDate() + days[i]),
+      });
+    }
+    const resp = await sunburst.batchQuality(inputs);
 
+    //window.location.href = "https://sydney-tran.github.io/sunsetcalculator/results.html";
+    window.location.href = "results.html";
+
+    var results = [];
     resp.forEach(({ collection, error }) => {
       if (error) {
         // Handle individual query errors separately,
         // as some queries may have still succeeded.
         return console.error(error);
       }
-      //window.location.href = "https://sydney-tran.github.io/sunsetcalculator/results.html";
-      window.location.href = "results.html";
-      // collection.features.forEach(({ properties }) => {
-      //   console.log(properties);
-      // });
       var properties = collection.features[0].properties;
-      localStorage.setItem("quality", properties.quality);
-      localStorage.setItem("percent", properties.qualityPercent);
       var time = properties.validAt;
       var hour = (parseInt(time.substring(11, 13)) - 5) % 12;
       hour = hour == 0 ? 12 : hour;
       var minute = parseInt(time.substring(14, 16));
-      localStorage.setItem("time", hour+":"+minute);
-
+      results.push({
+        quality: properties.quality,
+        percent: properties.qualityPercent,
+        time: hour + ":" + minute,
+      });
     });
+    localStorage.setItem("results", results);
+ 
   } catch (ex) {
     // Handle general network or parsing errors.
     return console.error(ex);
@@ -67,7 +57,7 @@ function calculateSunset(){
     .then(response => response.json())
     .then(data => {
       const location = data.results[0].geometry.location;
-      //console.log({latitude:location.lat, longitude:location.lng})
-      calculate(location);
+      var days = getDays;
+      calculate(location, days);
     });
 }
