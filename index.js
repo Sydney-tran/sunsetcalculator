@@ -32,13 +32,13 @@ function calculate(location, days){
       }
       var properties = collection.features[0].properties;
       var time = properties.validAt;
-      var hour = (parseInt(time.substring(11, 13)) - 5) % 12;
+      var hour = (parseInt(time.substring(11, 13)) + 7) % 12;
       hour = hour == 0 ? 12 : hour;
       var minute = parseInt(time.substring(14, 16));
       results.push({
         quality: properties.quality,
         percent: properties.qualityPercent,
-        time: hour + ":" + minute,
+        time: hour + ":" + minute + "EST",
       });
     });
     localStorage.setItem("results", results);
@@ -60,4 +60,33 @@ function calculateSunset(){
       var days = getDays;
       calculate(location, days);
     });
+}
+
+function getDays() {
+  // var days = [];
+
+  // if (document.getElementById("day-1").checked) {
+  //   days.push(-1);
+  // }
+  // if (document.getElementById("day").checked) {
+  //   days.push(0);
+  // }
+  // if (document.getElementById("day1").checked) {
+  //   days.push(1);
+  // }
+  // if (document.getElementById("day2").checked) {
+  //   days.push(2);
+  // }
+  // if (document.getElementById("day3").checked) {
+  //   days.push(3);
+  // }
+
+  var i = -1;
+  for(i; i <= 3; i++) {
+    if (document.getElementById("day" + i).checked) {
+      days.push(i);
+    }
+  }
+
+  return days;
 }
