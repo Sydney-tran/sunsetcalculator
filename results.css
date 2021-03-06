@@ -1,13 +1,21 @@
-.title {
-    text-align: center;
-    font-family: "Comfortaa", cursive;
-    font-size:40px;
-    letter-spacing: 10px;
-    color: #17004a;
-}
-
 body {
-    font-family: "Comfortaa", cursive;
+    font-family: GidolinyaRegular;
     color: white;
     background-image: url("https://www.itl.cat/pngfile/big/46-460589_pale-pink-wallpaper-pale-pink.jpg");
+    text-align: center;
+}
+
+h1 {
+    font-size: 100px;
+    font-weight: bold;
+    letter-spacing: 40px;
+}
+
+.quality {
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: gidole;
+    src: url('/GidoleFont/Gidole-Regular.ttf');
 }

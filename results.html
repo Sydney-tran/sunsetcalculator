@@ -4,6 +4,7 @@
     <head>
         <title>Results</title>
         <link rel="stylesheet" type="text/css" href="results.css">
+        <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/gidole-regular" type="text/css"/>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
         </style>
@@ -17,39 +18,41 @@
 
             switch(day) {
                 case 0:
-                    document.write("Sunday");
+                    document.write("sunday");
                     break;
                 case 1:
-                    document.write("Monday");
+                    document.write("monday");
                     break;
                 case 2:
-                    document.write("Tuesday");
+                    document.write("tuesday");
                     break;
                 case 3:
-                    document.write("Wednesday");
+                    document.write("wednesday");
                     break;
                 case 4:
-                    document.write("Thursday");
+                    document.write("thursday");
                     break;
                 case 5:
-                    document.write("Friday");
+                    document.write("friday");
                     break;
                 case 6:
-                    document.write("Saturday");
+                    document.write("saturday");
                     break;
             }
         </script>
         </h1>
 
-        <div id = "quality">
+        <div id = "quality" class = "sunset-property">
             Quality:
         </div>
+        <br/>
 
-        <div id = "percent">
+        <div id = "percent" class = "sunset-property">
             Percent:
         </div>
+        <br/>
 
-        <div id = "description">
+        <div id = "description" class = "sunset-description">
             Description: 
         </div>
 
@@ -62,7 +65,6 @@
             switch(quality) {
                 case "Poor":
                     document.getElementById("description").innerHTML = "Little to no color, with precipitation or a thick cloud layer often blocking a direct view of the sun.";
-                    document.body.style.backgroundImage = "url(https://media-cdn.tripadvisor.com/media/photo-s/09/5c/1c/a7/ocean-vagabond.jpg)";
                     document.body.style.backgroundImage = "url(img/poor.jpg)";
                     break;
                 case "Fair":
