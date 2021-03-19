@@ -1,6 +1,6 @@
 let sunburst = new SunburstJS({
-  clientId: '0d717d0f-158c-495d-903c-38cf56f7deeb',
-  clientSecret: 'nNruV4wLJWztEcGkmG8KTI94uXPWTIoK',
+  clientId: 'c3818fb9-d07a-4f6b-99b8-e7ecb726e2e2',
+  clientSecret: 'Rf71W9Vndd3mjO8WfkJFvwwiydlxw0WG',
   scope: ['predictions']
 });
 
@@ -8,35 +8,26 @@ let sunburst = new SunburstJS({
 function calculate(location, days){
   (async () => {
   try {
-    const today = new Date();
-    var inputs = [];
-    for (var i = 0; i < days.length; i++) {
-      var date = new Date();
-      inputs.push({
-        geo: [location.lat, location.lng],
-        type: 'sunset',
-        after: date.setDate(today.getDate() + days[i]),
-      });
-    }
+    var inputs = createInputs(location, days);
     const resp = await sunburst.batchQuality(inputs);
 
-    //window.location.href = "https://sydney-tran.github.io/sunsetcalculator/results.html";
     window.location.href = "results.html";
 
-    var results = [];
     var dayNames = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
     var descriptions = ["Little to no color, with precipitation or a thick cloud layer often blocking a direct view of the sun.", 
                         "Some color for a short time, with conditions ranging from mostly cloudy, or hazy, to clear, with little to no clouds at all levels.",
                         "A fair amount of color, often multi-colored, lasting a considerable amount of time. Often caused by scattered clouds at multiple levels.", 
                         "Extremely vibrant color lasting 30 minutes or more. Often caused by multiple arrangements of clouds at multiple levels, transitioning through multiple stages of vivid color."];
     var images = ["img/poor.jpg", "img/fair.jpg", "img/good.png", "img/great.jpg"];
+    
+    var results = [];
     var index = 0;
     resp.forEach(({ collection, error }) => {
       if (error) {
-        // Handle individual query errors separately,
-        // as some queries may have still succeeded.
+        // Handle individual query errors separately, as some queries may have still succeeded.
         return console.error(error);
       }
+      
       var date = new Date();
       date.setDate(today.getDate() + days[index]);
       
@@ -63,7 +54,6 @@ function calculate(location, days){
 
     });
     localStorage.setItem("results", JSON.stringify(results));
-    // console.log(results);
 
   } catch (ex) {
     // Handle general network or parsing errors.
@@ -84,9 +74,22 @@ function calculateSunset(){
     });
 }
 
+function createInputs(location, days) {
+  const today = new Date();
+  var inputs = [];
+  for (var i = 0; i < days.length; i++) {
+    var date = new Date();
+    inputs.push({
+      geo: [location.lat, location.lng],
+      type: 'sunset',
+      after: date.setDate(today.getDate() + days[i]),
+    });
+  }
+  return inputs;
+}
+
 function getDays() {
   var days = [];
-
   if (document.getElementById("day-1").checked) {
     days.push(-1);
   }
@@ -102,13 +105,5 @@ function getDays() {
   if (document.getElementById("day3").checked) {
     days.push(3);
   }
-
-  // var i = -1;
-  // for(i; i <= 3; i++) {
-  //   if (document.getElementById("day" + i).checked) {
-  //     days.push(i);
-  //   }
-  // }
-
   return days;
 }
