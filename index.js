@@ -6,6 +6,9 @@ let sunburst = new SunburstJS({
 
 function calculateSunset(){
   var zip = document.querySelector("#zip").value;
+  if (zip.length == 0) {
+    alert("please enter zip code");
+  } else {
   fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+zip+"&key=AIzaSyD-gd2vtXBRWD7GhFltpsBOBNxhRWORy-4")
     .then(response => response.json())
     .then(data => {
@@ -13,6 +16,7 @@ function calculateSunset(){
       var timezone = lookup(zip);
       calculate(location, timezone);
     });
+  }
 }
 
 function calculate(location, timezone){
@@ -22,47 +26,12 @@ function calculate(location, timezone){
     var type = getType();
     var days = getDays();
     var inputs = createInputs(today, location, type, days);
+    
     const resp = await sunburst.batchQuality(inputs);
 
     window.location.href = "results.html";
-
-    var dayNames = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-    var descriptions = ["Little to no color, with precipitation or a thick cloud layer often blocking a direct view of the sun.", 
-                        "Some color for a short time, with conditions ranging from mostly cloudy, or hazy, to clear, with little to no clouds at all levels.",
-                        "A fair amount of color, often multi-colored, lasting a considerable amount of time. Often caused by scattered clouds at multiple levels.", 
-                        "Extremely vibrant color lasting 30 minutes or more. Often caused by multiple arrangements of clouds at multiple levels, transitioning through multiple stages of vivid color."];
-    var images = ["img/poor.jpg", "img/fair.jpg", "img/good.png", "img/great.jpg"];
     
-    var results = [];
-    var index = 0;
-    resp.forEach(({ collection, error }) => {
-      if (error) {
-        return console.error(error);
-      }
-      
-      var date = new Date();
-      date.setDate(today.getDate() + days[index]);
-      
-      var properties = collection.features[0].properties;
-      
-      var time = new Date(properties.validAt);
-      time = time.toLocaleTimeString("en-US", {timeZone: timezone});
-
-      var percent  = properties.qualityPercent;
-      var dimgindex = Math.floor(percent / 25);
-
-      results.push({
-        day: dayNames[date.getDay()],
-        time: time,
-        quality: properties.quality,
-        percent: percent + "%",
-        description: descriptions[dimgindex],
-        image: images[dimgindex],
-      });
-
-      index++;
-
-    });
+    var results = createResults(today, days, timezone, resp);
 
     if (isRanked()) {
       results = rank(results);
@@ -87,6 +56,44 @@ function createInputs(today, location, type, days) {
     });
   }
   return inputs;
+}
+
+function createResults(today, days, timezone, resp) {
+  var dayNames = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+  var descriptions = ["Little to no color, with precipitation or a thick cloud layer often blocking a direct view of the sun.", 
+                      "Some color for a short time, with conditions ranging from mostly cloudy, or hazy, to clear, with little to no clouds at all levels.",
+                      "A fair amount of color, often multi-colored, lasting a considerable amount of time. Often caused by scattered clouds at multiple levels.", 
+                      "Extremely vibrant color lasting 30 minutes or more. Often caused by multiple arrangements of clouds at multiple levels, transitioning through multiple stages of vivid color."];
+  var images = ["img/poor.jpg", "img/fair.jpg", "img/good.png", "img/great.jpg"];
+
+  var results = [];
+  var index = 0;
+  resp.forEach(({ collection, error }) => {
+    if (error) {
+      return console.error(error);
+    }
+    var day = new Date();
+    day.setDate(today.getDate() + days[index]);
+    
+    var properties = collection.features[0].properties;
+    
+    var time = new Date(properties.validAt);
+    time = time.toLocaleTimeString("en-US", {timeZone: timezone});
+
+    var percent  = properties.qualityPercent;
+    var dimgindex = Math.floor(percent / 25);
+
+    results.push({
+      day: dayNames[day.getDay()],
+      time: time,
+      quality: properties.quality,
+      percent: percent + "%",
+      description: descriptions[dimgindex],
+      image: images[dimgindex],
+    });
+    index++;
+  });
+  return results;
 }
 
 function rank(results) {
@@ -125,6 +132,9 @@ function getDays() {
   }
   if (document.getElementById("day3").checked) {
     days.push(3);
+  }
+  if (days.length == 0) {
+    alert("please choose days");
   }
   return days;
 }
