@@ -10,7 +10,7 @@ body {
     font-family: "Comfortaa", cursive;
     font-size: 30px;
     color: #201141;
-    background: linear-gradient(211deg, #e75347, #ebdd48, #3edcb1, #3eaddc, #3e59dc, #a03edc);
+    background: linear-gradient(211deg, #3e59dc, #a03edc, #e75347, #ebc548, #3edcb1, #3eaddc);
     background-size: 300% 300%;
     animation: gradient 10s ease infinite;
 }
