@@ -8,7 +8,8 @@ let sunburst = new SunburstJS({
 function calculate(location, days){
   (async () => {
   try {
-    var inputs = createInputs(location, days);
+    const today = new Date();
+    var inputs = createInputs(today, location, days);
     const resp = await sunburst.batchQuality(inputs);
 
     window.location.href = "results.html";
@@ -34,7 +35,7 @@ function calculate(location, days){
       var properties = collection.features[0].properties;
       
       var time = properties.validAt;
-      var hour = (parseInt(time.substring(11, 13)) + 7) % 12;
+      var hour = (parseInt(time.substring(11, 13)) + 8) % 12;
       hour = hour == 0 ? 12 : hour;
       var minute = parseInt(time.substring(14, 16));
 
@@ -53,6 +54,11 @@ function calculate(location, days){
       index++;
 
     });
+
+    if (isRanked()) {
+      results = rank(results);
+    }
+
     localStorage.setItem("results", JSON.stringify(results));
 
   } catch (ex) {
@@ -74,8 +80,7 @@ function calculateSunset(){
     });
 }
 
-function createInputs(location, days) {
-  const today = new Date();
+function createInputs(today, location, days) {
   var inputs = [];
   for (var i = 0; i < days.length; i++) {
     var date = new Date();
@@ -86,6 +91,19 @@ function createInputs(location, days) {
     });
   }
   return inputs;
+}
+
+function rank(results) {
+  for (var i = 1; i < results.length; i++) {
+    var temp = results[i];
+    var j = i - 1;
+    while (j >= 0 && temp.percent > results[j].percent) {
+      results[j + 1] = results[j];
+      j--;
+    }
+    results[j + 1] = temp;
+  }
+  return results;
 }
 
 function getDays() {
@@ -106,4 +124,11 @@ function getDays() {
     days.push(3);
   }
   return days;
+}
+
+function isRanked() {
+  if (document.getElementById("ranking").checked) {
+    return true;
+  }
+  return false;
 }
