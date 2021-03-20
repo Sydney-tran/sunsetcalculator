@@ -10,11 +10,12 @@ function calculateSunset(){
     .then(response => response.json())
     .then(data => {
       var location = data.results[0].geometry.location;
-      calculate(location);
+      var timezone = lookup(zip);
+      calculate(location, timezone);
     });
 }
 
-function calculate(location){
+function calculate(location, timezone){
   (async () => {
   try {
     const today = new Date();
@@ -44,17 +45,15 @@ function calculate(location){
       
       var properties = collection.features[0].properties;
       
-      var time = properties.validAt;
-      var hour = (parseInt(time.substring(11, 13)) + 8) % 12;
-      hour = hour == 0 ? 12 : hour;
-      var minute = parseInt(time.substring(14, 16));
+      var time = new Date(properties.validAt);
+      time = time.toLocaleTimeString("en-US", {timeZone: timezone});
 
       var percent  = properties.qualityPercent;
       var dimgindex = Math.floor(percent / 25);
 
       results.push({
         day: dayNames[date.getDay()],
-        time: hour + ":" + minute + " EST",
+        time: time,
         quality: properties.quality,
         percent: percent + "%",
         description: descriptions[dimgindex],

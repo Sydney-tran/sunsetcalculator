@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Sydney-tran/sunsetcalculator#readme",
   "dependencies": {
-    "sunburst.js": "^2.1.3"
+    "sunburst.js": "^2.1.3",
+    "zipcode-to-timezone": "0.0.9"
   }
 }
