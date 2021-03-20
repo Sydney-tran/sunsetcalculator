@@ -1,0 +1,25 @@
+{
+  "name": "sunsetcalculator",
+  "version": "1.0.0",
+  "description": "sunset calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sydney-tran/sunsetcalculator.git"
+  },
+  "keywords": [
+    "sunset"
+  ],
+  "author": "sydney and emily",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sydney-tran/sunsetcalculator/issues"
+  },
+  "homepage": "https://github.com/Sydney-tran/sunsetcalculator#readme",
+  "dependencies": {
+    "sunburst.js": "^2.1.3"
+  }
+}

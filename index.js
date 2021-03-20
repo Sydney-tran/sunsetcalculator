@@ -4,12 +4,23 @@ let sunburst = new SunburstJS({
   scope: ['predictions']
 });
 
-// https://github.com/sunsetwx/sunburst.js
-function calculate(location, days){
+function calculateSunset(){
+  var zip = document.querySelector("#zip").value;
+  fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+zip+"&key=AIzaSyD-gd2vtXBRWD7GhFltpsBOBNxhRWORy-4")
+    .then(response => response.json())
+    .then(data => {
+      var location = data.results[0].geometry.location;
+      calculate(location);
+    });
+}
+
+function calculate(location){
   (async () => {
   try {
     const today = new Date();
-    var inputs = createInputs(today, location, days);
+    var type = getType();
+    var days = getDays();
+    var inputs = createInputs(today, location, type, days);
     const resp = await sunburst.batchQuality(inputs);
 
     window.location.href = "results.html";
@@ -25,7 +36,6 @@ function calculate(location, days){
     var index = 0;
     resp.forEach(({ collection, error }) => {
       if (error) {
-        // Handle individual query errors separately, as some queries may have still succeeded.
         return console.error(error);
       }
       
@@ -62,31 +72,18 @@ function calculate(location, days){
     localStorage.setItem("results", JSON.stringify(results));
 
   } catch (ex) {
-    // Handle general network or parsing errors.
     return console.error(ex);
   }
 })();
 }
 
-function calculateSunset(){
-  var zip = document.querySelector("#zip").value;
-  //https://stackoverflow.com/questions/52770661/get-latitude-and-longitude-from-zip-code-javascript
-  fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+zip+"&key=AIzaSyD-gd2vtXBRWD7GhFltpsBOBNxhRWORy-4")
-    .then(response => response.json())
-    .then(data => {
-      const location = data.results[0].geometry.location;
-      var days = getDays();
-      calculate(location, days);
-    });
-}
-
-function createInputs(today, location, days) {
+function createInputs(today, location, type, days) {
   var inputs = [];
   for (var i = 0; i < days.length; i++) {
     var date = new Date();
     inputs.push({
       geo: [location.lat, location.lng],
-      type: 'sunset',
+      type: type,
       after: date.setDate(today.getDate() + days[i]),
     });
   }
@@ -104,6 +101,13 @@ function rank(results) {
     results[j + 1] = temp;
   }
   return results;
+}
+
+function getType() {
+  if (document.getElementById("isSunset").checked) {
+    return 'sunset';
+  }
+  return 'sunrise';
 }
 
 function getDays() {
