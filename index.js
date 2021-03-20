@@ -103,7 +103,7 @@ function rank(results) {
 }
 
 function getType() {
-  if (document.getElementById("isSunset").checked) {
+  if (document.getElementById("sunset").checked) {
     return 'sunset';
   }
   return 'sunrise';

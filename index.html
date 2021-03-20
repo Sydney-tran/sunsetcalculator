@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html>
+    <br><br>
     <head>
         <title>Sunset Calculator</title>
         <link rel="stylesheet" type="text/css" href="index.css">
@@ -14,72 +15,104 @@
     </head>
 
     <body>
-        <div class = "body-content"></div>
-
-        <h1 id = "title" class = "title">sunset calculator</h1>
-
-        <div class = "inputs">
-            <label for="zip">Zip Code:  </label>
-            <br/>
-            <input type="text" id="zip" name="zip" pattern="[0-9]{5}"> <br><br>
-
-            <div class="choice">
-                <label id = "lday-1" style = "color:black;" for="day1">day1</label>
-                <br>
-                <input type="checkbox" id="day-1" name="option" value="1">
-            </div>
-            <div class="choice">
-                <label id = "lday" style = "color:black;" for="day2">day2</label>
-                <br>
-                <input type="checkbox" id="day" name="option" value="2">
-            </div>
-            <div class="choice">
-                <label id = "lday1" style = "color:black;" for="day3">day3</label>
-                <br>
-                <input type="checkbox" id="day1" name="option" value="3">
-            </div>
-            <div class="choice">
-                <label id = "lday2" style = "color:black;" for="day4">day4</label>
-                <br>
-                <input type="checkbox" id="day2" name="option" value="4">
-            </div>
-            <div class="choice">
-                <label id = "lday3" style = "color:black;" for="day5">day5</label>
-                <br>
-                <input type="checkbox" id="day3" name="option" value="5">
+        <h1 class = "title">sunset calculator</h1>
+        <div class = "row">
+            <div class = "col-6" style = "text-align: right;">
+                sunrise
             </div>
 
-            <br><br>
-            <div class="choice">
-                <label id = "lranking" style = "color:black;" for="ranking">ranking</label>
-                <br>
-                <input type="checkbox" id="ranking" name="option" value="1">
+            <div class = "col-3" style = "text-align: center;">
+                <label class = "switch">
+                    <input type = "checkbox" id = "sunset">
+                    <span class = "slider round"></span>
+                </label>
             </div>
 
-            <div class="choice">
-                <label id = "lsunset" style = "color:black;" for="sunset">sunset</label>
-                <br>
-                <input type="checkbox" id="isSunset" name="option" value="1">
+            <div class = "col-6" style = "text-align: left;">
+                sunset
             </div>
-
-            <script language="javascript" type="text/javascript">  
-                var date = new Date();
-                var day = (date.getDay() + 6) % 7;
-
-                var days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-
-                document.getElementById("lday-1").innerHTML = days[day];
-                document.getElementById("lday").innerHTML = days[(day+1)%7];
-                document.getElementById("lday1").innerHTML = days[(day+2)%7];
-                document.getElementById("lday2").innerHTML = days[(day+3)%7];
-                document.getElementById("lday3").innerHTML = days[(day+4)%7];
-            </script>
-
-            <br>
         </div>
 
-        <div style="text-align:center;">
-            <button class="button" id="submit" onclick="calculateSunset()">submit</button>
+        <br>
+
+        <div class = "row">
+            <div class = "col-2"></div>
+            <div class = "col-2" style = "text-align: center;">
+                <label for="zip">Zip Code:</label>
+                <br>
+                <input type="text" id="zip" name="zip" pattern="[0-9]{5}"> <br><br>
+            </div>
+
+            <div class = "col-1"></div>
+
+            <div class = "col-1" style = "text-align: center;">
+                <div class="choice">
+                    <label id = "lday-1" for="day1">day1</label>
+                    <br>
+                    <input type="checkbox" id="day-1" name="option" value="1">
+                </div>
+            </div>
+            
+            <div class = "col-1" style = "text-align: center;">
+                <div class="choice">
+                    <label id = "lday" for="day2">day2</label>
+                    <br>
+                    <input type="checkbox" id="day" name="option" value="2">
+                </div>
+            </div>
+
+            <div class = "col-1" style = "text-align: center;">
+                <div class="choice">
+                    <label id = "lday1" for="day3">day3</label>
+                    <br>
+                    <input type="checkbox" id="day1" name="option" value="3">
+                </div>
+            </div>
+
+            <div class = "col-1" style = "text-align: center;">
+                <div class="choice">
+                    <label id = "lday2" for="day4">day4</label>
+                    <br>
+                    <input type="checkbox" id="day2" name="option" value="4">
+                </div>
+            </div>
+
+            <div class = "col-1" style = "text-align: center;">
+                <div class="choice">
+                    <label id = "lday3" for="day5">day5</label>
+                    <br>
+                    <input type="checkbox" id="day3" name="option" value="5">
+                </div>
+            </div>
+
+            <div class = "col-1"></div>
+
+            <div class = "col-1" style = "text-align: center;">
+                <div class="choice">
+                    <label id = "lranking" for="ranking">ranking</label>
+                    <br>
+                    <input type="checkbox" id="ranking" name="option" value="1">
+                </div>
+            </div>
+
+            <div class = "col-1"></div>
         </div>
+
+        <script language="javascript" type="text/javascript">  
+            var date = new Date();
+            var day = (date.getDay() + 6) % 7;
+
+            var days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+
+            document.getElementById("lday-1").innerHTML = days[day];
+            document.getElementById("lday").innerHTML = days[(day+1)%7];
+            document.getElementById("lday1").innerHTML = days[(day+2)%7];
+            document.getElementById("lday2").innerHTML = days[(day+3)%7];
+            document.getElementById("lday3").innerHTML = days[(day+4)%7];
+        </script>
+
+    <div style="text-align:center;">
+        <button class="button" id="submit" onclick="calculateSunset()">submit</button>
+    </div>
     </body>
 </html>
