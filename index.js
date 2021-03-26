@@ -23,18 +23,18 @@ function calculate(location, timezone){
   (async () => {
   try {
     const today = new Date();
-    var type = getType();
-    var days = getDays();
-    var inputs = createInputs(today, location, type, days);
+    var type = await getType();
+    var days = await getDays();
+    var inputs = await createInputs(today, location, type, days);
     
     const resp = await sunburst.batchQuality(inputs);
 
     window.location.href = "results.html";
     
-    var results = createResults(today, days, timezone, resp);
+    var results = await createResults(today, days, timezone, resp);
 
     if (isRanked()) {
-      results = rank(results);
+      await rank(results);
     }
 
     localStorage.setItem("results", JSON.stringify(results));
@@ -87,7 +87,7 @@ function createResults(today, days, timezone, resp) {
       day: dayNames[day.getDay()],
       time: time,
       quality: properties.quality,
-      percent: percent + "%",
+      percent: percent,
       description: descriptions[dimgindex],
       image: images[dimgindex],
     });
@@ -106,7 +106,6 @@ function rank(results) {
     }
     results[j + 1] = temp;
   }
-  return results;
 }
 
 function getType() {
