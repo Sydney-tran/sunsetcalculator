@@ -2,6 +2,9 @@ body {
     font-family: GidolinyaRegular;
     color: white;
     background-image: url("https://www.itl.cat/pngfile/big/46-460589_pale-pink-wallpaper-pale-pink.jpg");
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
 }
 
 @font-face {
@@ -14,6 +17,7 @@ body {
     font-size: 100px;
     font-weight: bold;
     letter-spacing: 40px;
+    text-indent: 40px;
 }
 
 .time {
@@ -46,9 +50,6 @@ body {
 img {
     width: 100%;
     height: auto;
-    margin: 0px;
-    border: 0px;
-    padding: 0px;
 }
 
 /* begin cited code */
