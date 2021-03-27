@@ -84,7 +84,7 @@ function createResults(today, days, timezone, data) {
       time = time.toLocaleTimeString("en-US", {timeZone: timezone});
 
       var percent  = properties.qualityPercent;
-      var dimgindex = Math.floor(percent / 25);
+      var dimgindex = Math.min(Math.floor(percent / 25), 3);
 
       results.push({
         day: dayNames[day.getDay()],
