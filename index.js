@@ -4,7 +4,8 @@ let sunburst = new SunburstJS({
   scope: ['predictions']
 });
 
-//https://stackoverflow.com/questions/52770661/get-latitude-and-longitude-from-zip-code-javascript
+// begin cited code
+// https://stackoverflow.com/questions/52770661/get-latitude-and-longitude-from-zip-code-javascript
 function calculateSunset(){
   var zip = document.querySelector("#zip").value;
   if (zip.length == 0) {
@@ -19,8 +20,8 @@ function calculateSunset(){
     });
   }
 }
+// end cited code
 
-// https://github.com/sunsetwx/sunburst.js
 function calculate(location, timezone){
   (async () => {
   try {
@@ -29,11 +30,11 @@ function calculate(location, timezone){
     var days = await getDays();
     var inputs = await createInputs(today, location, type, days);
     
-    const resp = await sunburst.batchQuality(inputs);
+    var data = await sunburst.batchQuality(inputs);
 
     window.location.href = "results.html";
     
-    var results = await createResults(today, days, timezone, resp);
+    var results = await createResults(today, days, timezone, data);
 
     if (isRanked()) {
       await rank(results);
@@ -60,7 +61,7 @@ function createInputs(today, location, type, days) {
   return inputs;
 }
 
-function createResults(today, days, timezone, resp) {
+function createResults(today, days, timezone, data) {
   var dayNames = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
   var descriptions = ["Little to no color, with precipitation or a thick cloud layer often blocking a direct view of the sun.", 
                       "Some color for a short time, with conditions ranging from mostly cloudy, or hazy, to clear, with little to no clouds at all levels.",
@@ -70,34 +71,37 @@ function createResults(today, days, timezone, resp) {
 
   var results = [];
   var index = 0;
-  resp.forEach(({ collection, error }) => {
+  data.forEach(({ collection, error }) => {
     if (error) {
       return console.error(error);
+    } else {
+      var day = new Date();
+      day.setDate(today.getDate() + days[index]);
+      
+      var properties = collection.features[0].properties;
+      
+      var time = new Date(properties.validAt);
+      time = time.toLocaleTimeString("en-US", {timeZone: timezone});
+
+      var percent  = properties.qualityPercent;
+      var dimgindex = Math.floor(percent / 25);
+
+      results.push({
+        day: dayNames[day.getDay()],
+        time: time,
+        quality: properties.quality,
+        percent: percent,
+        description: descriptions[dimgindex],
+        image: images[dimgindex],
+      });
+      index++;
     }
-    var day = new Date();
-    day.setDate(today.getDate() + days[index]);
-    
-    var properties = collection.features[0].properties;
-    
-    var time = new Date(properties.validAt);
-    time = time.toLocaleTimeString("en-US", {timeZone: timezone});
-
-    var percent  = properties.qualityPercent;
-    var dimgindex = Math.floor(percent / 25);
-
-    results.push({
-      day: dayNames[day.getDay()],
-      time: time,
-      quality: properties.quality,
-      percent: percent,
-      description: descriptions[dimgindex],
-      image: images[dimgindex],
-    });
-    index++;
   });
   return results;
 }
 
+// begin cited code
+// https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php
 function rank(results) {
   for (var i = 1; i < results.length; i++) {
     var temp = results[i];
@@ -109,6 +113,7 @@ function rank(results) {
     results[j + 1] = temp;
   }
 }
+// end cited code
 
 function getType() {
   if (document.getElementById("sunset").checked) {
@@ -147,6 +152,7 @@ function isRanked() {
   return false;
 }
 
+// begin cited code
 // https://www.w3schools.com/howto/howto_js_slideshow.asp
 var slideIndex = 0;
 
@@ -169,3 +175,4 @@ function showSlides() {
   }
   slides[slideIndex].style.display = "block";
 }
+// end cited code
