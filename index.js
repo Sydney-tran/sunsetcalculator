@@ -1,9 +1,10 @@
 let sunburst = new SunburstJS({
-  clientId: 'c3818fb9-d07a-4f6b-99b8-e7ecb726e2e2',
-  clientSecret: 'Rf71W9Vndd3mjO8WfkJFvwwiydlxw0WG',
+  clientId: 'f35cdb1c-f49d-40c2-9bf3-d99b33eb54f7',
+  clientSecret: '6f0uGxXu1Gj9yeNL35fcZrzSEWc1oDvv',
   scope: ['predictions']
 });
 
+//https://stackoverflow.com/questions/52770661/get-latitude-and-longitude-from-zip-code-javascript
 function calculateSunset(){
   var zip = document.querySelector("#zip").value;
   if (zip.length == 0) {
@@ -19,6 +20,7 @@ function calculateSunset(){
   }
 }
 
+// https://github.com/sunsetwx/sunburst.js
 function calculate(location, timezone){
   (async () => {
   try {
@@ -143,4 +145,27 @@ function isRanked() {
     return true;
   }
   return false;
+}
+
+// https://www.w3schools.com/howto/howto_js_slideshow.asp
+var slideIndex = 0;
+
+function moveSlides(n) {
+  slideIndex += n;
+  showSlides();
+}
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("slides");
+  if (slideIndex >= slides.length) {
+    slideIndex = 0;
+  }
+  if (slideIndex < 0) {
+    slideIndex = slides.length - 1;
+  }
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  slides[slideIndex].style.display = "block";
 }
