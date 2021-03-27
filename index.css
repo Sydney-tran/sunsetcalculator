@@ -59,9 +59,9 @@ body {
 }
 
 button {
-    background-color: 	#a8efff;
+    background-color: transparent;
     font-family: "Comfortaa", cursive;
-    border: none;
+    border: 2px solid rgb(0, 47, 61);
     color: rgb(0, 47, 61);
     padding: 15px 32px;
     text-align: center;
@@ -73,11 +73,15 @@ button {
     cursor: pointer;
 }
 
+button:hover {
+    background-color: #a8efff;
+}
+
   /* begin cited code */
   /* w3schools How To - Toggle Switch: https://www.w3schools.com/howto/howto_css_switch.asp */
 
   /* The switch - the box around the slider */
-.switch {
+  .switch {
     position: relative;
     display: inline-block;
     width: 60px;
@@ -140,5 +144,3 @@ button {
   }
 
   /* end cited code */
-
-  
