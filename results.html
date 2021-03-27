@@ -8,6 +8,10 @@
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
         </style>
+        <script src="assets/js/sunburst.iife.js"></script>
+        <script src="assets/js/zipcodes.js"></script>
+        <script src="assets/js/zipcodes.json.js"></script>
+        <script src="index.js"></script>
     </head>
 
     <body>
@@ -16,6 +20,7 @@
             var results = JSON.parse(data);
 
             for(var i = 0; i < results.length; i++) {
+                document.write("<div class = 'slides'>");
                 document.write("<div class = 'properties'>");
                 document.write("<div class = 'day'>" + results[i].day + "</div>");
                 document.write("<div class = 'time'>" + results[i].time + "</div>");
@@ -24,8 +29,11 @@
                 document.write("<div class = 'description'>" + results[i].description + '</div>');
                 document.write("</div>");
                 document.write("<img src = " + results[i].image + ">");
+                document.write("</div>");
             }
+            showSlides();
         </script>
-
+        <a class="prev" onclick="moveSlides(-1)">&#10094;</a>
+        <a class="next" onclick="moveSlides(1)">&#10095;</a>
     </body>
 </html>
