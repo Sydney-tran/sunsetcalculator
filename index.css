@@ -78,6 +78,10 @@ button:hover {
     border-color: #a8efff;
 }
 
+button:focus {
+    outline:0;
+}
+
   /* begin cited code */
   /* w3schools How To - Toggle Switch: https://www.w3schools.com/howto/howto_css_switch.asp */
 
