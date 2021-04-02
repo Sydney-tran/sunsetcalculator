@@ -67,7 +67,7 @@ function createResults(today, days, timezone, data) {
                       "Some color for a short time, with conditions ranging from mostly cloudy, or hazy, to clear, with little to no clouds at all levels.",
                       "A fair amount of color, often multi-colored, lasting a considerable amount of time. Often caused by scattered clouds at multiple levels.", 
                       "Extremely vibrant color lasting 30 minutes or more. Often caused by multiple arrangements of clouds at multiple levels, transitioning through multiple stages of vivid color."];
-  var images = ["imgs/poor.jpg", "imgs/fair.jpg", "imgs/good.png", "imgs/great.jpg"];
+  var images = ["img/poor.jpg", "img/fair.jpg", "img/good.png", "img/great.jpg"];
 
   var results = [];
   var index = 0;
