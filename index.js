@@ -11,12 +11,16 @@ function calculateSunset(){
   if (!validZip(zip)) {
     alert("please enter valid zip code");
   } else {
-  fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+zip+"&key=AIzaSyD-gd2vtXBRWD7GhFltpsBOBNxhRWORy-4")
+    fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+zip+"&key=AIzaSyD-gd2vtXBRWD7GhFltpsBOBNxhRWORy-4")
     .then(response => response.json())
     .then(data => {
       var location = data.results[0].geometry.location;
       var timezone = lookup(zip);
-      calculate(location, timezone);
+      if (timezone == null) {
+        alert("please enter valid zip code");
+      } else {
+        calculate(location, timezone);
+      }
     });
   }
 }
