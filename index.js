@@ -1,11 +1,18 @@
+// begin cited code
+// https://sunburst.sunsetwx.com/v1/docs/
+// Variable created using Sunburst API from SunsetWx.
 let sunburst = new SunburstJS({
   clientId: '419c8139-a5c4-4731-9d28-434f0d5bce1e',
   clientSecret: 'lxZzvOP0cJ4BoxSnhPwbQpruLFL1KHoh',
   scope: ['predictions']
 });
+// end cited code
 
 // begin cited code
 // https://stackoverflow.com/questions/52770661/get-latitude-and-longitude-from-zip-code-javascript
+/**
+ * Uses inputted zip code to find latitude, longtitude, and time zone of location and calls calculate function.
+ */
 function calculateSunset(){
   var zip = document.querySelector("#zip").value;
   if (!validZip(zip)) {
@@ -26,6 +33,15 @@ function calculateSunset(){
 }
 // end cited code
 
+/**
+ * 
+ * Main method of the program that calls functions to create inputs, get data from the Sunburst API,
+ * create results from the data, rank the result if the user would like to view results in ranked order,
+ * and saves the results in local storage.
+ * 
+ * @param {object} location 
+ * @param {string} timezone 
+ */
 function calculate(location, timezone){
   (async () => {
   try {
@@ -52,6 +68,30 @@ function calculate(location, timezone){
 })();
 }
 
+/**
+ * 
+ * Returns boolean value containing whether or not the given zip code is in a valid format (5 digits).
+ * 
+ * @param {string} zip 
+ * @returns {boolean} isZip
+ */
+function validZip(zip) {
+  const zipPattern = /^\d{5}$/;
+  var isZip = zipPattern.test(zip);
+  return isZip;
+}
+
+/**
+ * 
+ * Creates and returns array of the inputs, including the location, the type (either sunrise or sunset), 
+ * and the dates the sunrises/sunsets occur after, given the current date, the location, the type, and the array of days.
+ * 
+ * @param {date} today 
+ * @param {object} location 
+ * @param {string} type 
+ * @param {int array} days 
+ * @returns {object array} inputs 
+ */
 function createInputs(today, location, type, days) {
   var inputs = [];
   for (var i = 0; i < days.length; i++) {
@@ -106,6 +146,12 @@ function createResults(today, days, timezone, data) {
 
 // begin cited code
 // https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php
+/**
+ * 
+ * Uses insertion sort to order the array of results from best sunrise/sunset quality to worst sunrise/sunset quality.
+ * 
+ * @param {object array} results 
+ */
 function rank(results) {
   for (var i = 1; i < results.length; i++) {
     var temp = results[i];
@@ -160,11 +206,20 @@ function isRanked() {
 // https://www.w3schools.com/howto/howto_js_slideshow.asp
 var slideIndex = 0;
 
+/**
+ * 
+ * Moves results slides n spaces (forward for positive values of n and backward for negative values of n).
+ * 
+ * @param {int} n 
+ */
 function moveSlides(n) {
   slideIndex += n;
   showSlides();
 }
 
+/**
+ * Displays the results slides.
+ */
 function showSlides() {
   var i;
   var slides = document.getElementsByClassName("slides");
@@ -180,8 +235,3 @@ function showSlides() {
   slides[slideIndex].style.display = "block";
 }
 // end cited code
-
-function validZip(zip) {
-  const zipPattern = /^\d{5}$/;
-  return zipPattern.test(zip);
-}
