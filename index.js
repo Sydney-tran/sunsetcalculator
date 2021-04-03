@@ -44,28 +44,28 @@ function calculateSunset(){
  */
 function calculate(location, timezone){
   (async () => {
-  try {
-    const today = new Date();
-    var type = await getType();
-    var days = await getDays();
-    var inputs = await createInputs(today, location, type, days);
-    
-    var data = await sunburst.batchQuality(inputs);
+    try {
+      const today = new Date();
+      var type = await getType();
+      var days = await getDays();
+      var inputs = await createInputs(today, location, type, days);
+      
+      var data = await sunburst.batchQuality(inputs);
 
-    window.location.href = "results.html";
-    
-    var results = await createResults(today, days, timezone, data);
+      window.location.href = "results.html";
+      
+      var results = await createResults(today, days, timezone, data);
 
-    if (isRanked()) {
-      await rank(results);
+      if (isRanked()) {
+        await rank(results);
+      }
+
+      localStorage.setItem("results", JSON.stringify(results));
+
+    } catch (ex) {
+      return console.error(ex);
     }
-
-    localStorage.setItem("results", JSON.stringify(results));
-
-  } catch (ex) {
-    return console.error(ex);
-  }
-})();
+  })();
 }
 
 /**
