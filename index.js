@@ -15,7 +15,7 @@ function calculateSunset(){
     .then(response => response.json())
     .then(data => {
       var timezone = lookup(zip);
-      if (timezone == null) {
+      if (timezone == null || data.results.length < 1) {
         alert("please enter valid zip code");
       } else {
         var location = data.results[0].geometry.location;
