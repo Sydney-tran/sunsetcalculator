@@ -1,18 +1,18 @@
 .title {
-    text-align: center;
-    font-family: "Comfortaa", cursive;
-    font-size:100px;
-    letter-spacing: 10px;
-    color: #0c0025;
+  text-align: center;
+  font-family: "Comfortaa", cursive;
+  font-size:100px;
+  letter-spacing: 10px;
+  color: #0c0025;
 }
 
 body {
-    font-family: "Comfortaa", cursive;
-    font-size: 30px;
-    color: #201141;
-    background: linear-gradient(210deg, #3e59dc, #a03edc, #e75347, #ebc548, #3edcb1, #3eaddc);
-    background-size: 300% 300%;
-    animation: gradient 10s ease infinite;
+  font-family: "Comfortaa", cursive;
+  font-size: 30px;
+  color: #201141;
+  background: linear-gradient(210deg, #3e59dc, #a03edc, #e75347, #ebc548, #3edcb1, #3eaddc);
+  background-size: 300% 300%;
+  animation: gradient 10s ease infinite;
 }
 
 @keyframes gradient {
@@ -44,42 +44,42 @@ body {
 .col-15 {width: 100%}
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 [class*="col-"] {
-    float: left;
-    padding: 15px;
+  float: left;
+  padding: 15px;
 }
 
 .row::after {
-    content: "";
-    clear: both;
-    display: table;
+  content: "";
+  clear: both;
+  display: table;
 }
 
 button {
-    background-color: transparent;
-    font-family: "Comfortaa", cursive;
-    border: 1px solid rgb(0, 47, 61);
-    color: rgb(0, 47, 61);
-    padding: 15px 32px;
-    text-align: center;
-    display: inline-block;
-    font-size: 20px;
-    margin: 50px;
-    border-radius: 30px;
-    width: 180px;
-    cursor: pointer;
+  background-color: transparent;
+  font-family: "Comfortaa", cursive;
+  border: 1px solid rgb(0, 47, 61);
+  color: rgb(0, 47, 61);
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  margin: 50px;
+  border-radius: 30px;
+  width: 180px;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #a8efff;
-    border-color: #a8efff;
+  background-color: #a8efff;
+  border-color: #a8efff;
 }
 
 button:focus {
-    outline:0;
+  outline:0;
 }
 
 /* begin cited code */

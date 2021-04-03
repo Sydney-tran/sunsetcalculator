@@ -105,6 +105,19 @@ function createInputs(today, location, type, days) {
   return inputs;
 }
 
+/**
+ * 
+ * Creates and returns array of the results, including the names of the days, the times of the sunrises/sunsets,
+ * the qualities of the sunrises/sunsets, the quality percents of the sunrises/sunsets, descriptions of the sunrises/sunsets,
+ * and the image paths for the sunrises/sunsets, given the current date, the days selected, the time zone, and the Sunburst API data.
+ * 
+ * @param {date} today 
+ * @param {int array} days 
+ * @param {string} timezone 
+ * @param {sunburst batch} data 
+ * @returns {object array} results
+ */
+
 function createResults(today, days, timezone, data) {
   var dayNames = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
   var descriptions = ["Little to no color, with precipitation or a thick cloud layer often blocking a direct view of the sun.", 
@@ -165,6 +178,12 @@ function rank(results) {
 }
 // end cited code
 
+/**
+ * 
+ * Returns the type (sunrise or sunset) the user would like to view based on the status of the checkbox element "sunset".
+ * 
+ * @returns {string} type
+ */
 function getType() {
   if (document.getElementById("sunset").checked) {
     return 'sunset';
@@ -172,6 +191,13 @@ function getType() {
   return 'sunrise';
 }
 
+/**
+ * 
+ * Returns an array of integers containing the value of the days relevant to the current day that the user has selected.
+ * Ex. the previous day would be stored in the array as -1, the current day as 0, two days after the current day as 2, etc.
+ * 
+ * @returns {int array} days
+ */
 function getDays() {
   var days = [];
   if (document.getElementById("day-1").checked) {
@@ -195,6 +221,13 @@ function getDays() {
   return days;
 }
 
+/**
+ * 
+ * Returns a boolean value containing whether or not the user would like to view the sunrise or sunset qualities in a ranked
+ * order.
+ * 
+ * @returns {boolean} isRanked
+ */
 function isRanked() {
   if (document.getElementById("ranking").checked) {
     return true;
