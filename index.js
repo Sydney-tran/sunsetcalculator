@@ -229,10 +229,13 @@ function getDays() {
  * @returns {boolean} isRanked
  */
 function isRanked() {
+  var isRanked;
   if (document.getElementById("ranking").checked) {
-    return true;
+    isRanked = true;
+  } else {
+    isRanked = false;
   }
-  return false;
+  return isRanked;
 }
 
 // begin cited code
