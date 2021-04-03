@@ -193,7 +193,7 @@ function getType() {
 
 /**
  * 
- * Returns an array of integers containing the value of the days relevant to the current day that the user has selected.
+ * Returns an array of integers containing the value of the days relative to the current day that the user has selected.
  * Ex. the previous day would be stored in the array as -1, the current day as 0, two days after the current day as 2, etc.
  * 
  * @returns {int array} days
