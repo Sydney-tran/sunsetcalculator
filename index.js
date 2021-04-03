@@ -8,8 +8,8 @@ let sunburst = new SunburstJS({
 // https://stackoverflow.com/questions/52770661/get-latitude-and-longitude-from-zip-code-javascript
 function calculateSunset(){
   var zip = document.querySelector("#zip").value;
-  if (zip.length == 0) {
-    alert("please enter zip code");
+  if (!validZip(zip)) {
+    alert("please enter valid zip code");
   } else {
   fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+zip+"&key=AIzaSyD-gd2vtXBRWD7GhFltpsBOBNxhRWORy-4")
     .then(response => response.json())
@@ -176,3 +176,8 @@ function showSlides() {
   slides[slideIndex].style.display = "block";
 }
 // end cited code
+
+function validZip(zip) {
+  const zipPattern = /^\d{5}$/;
+  return zipPattern.test(zip);
+}
