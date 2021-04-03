@@ -141,7 +141,16 @@ function createResults(today, days, timezone, data) {
       time = time.toLocaleTimeString("en-US", {timeZone: timezone});
 
       var percent  = properties.qualityPercent;
-      var dimgindex = Math.min(Math.floor(percent / 25), 3);
+      var dimgindex;
+      if (percent < 25) {
+        dimgindex = 0;
+      } else if (percent < 50) {
+        dimgindex = 1;
+      } else if (percent < 75) {
+        dimgindex = 2;
+      } else {
+        dimgindex = 3;
+      }
 
       results.push({
         day: dayNames[day.getDay()],
