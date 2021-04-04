@@ -11,14 +11,16 @@ let sunburst = new SunburstJS({
 // begin cited code
 // https://stackoverflow.com/questions/52770661/get-latitude-and-longitude-from-zip-code-javascript
 /**
- * Uses inputted zip code to find latitude, longtitude, and time zone of location and calls calculate function.
+ * Uses inputted zip code to find latitude, longtitude, and time zone of location and calls 
+ * calculate function.
  */
 function calculateSunset(){
   var zip = document.querySelector("#zip").value;
   if (!validZip(zip)) {
     alert("please enter valid zip code");
   } else {
-    fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+zip+"&key=AIzaSyD-gd2vtXBRWD7GhFltpsBOBNxhRWORy-4")
+    fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+zip
+    +"&key=AIzaSyD-gd2vtXBRWD7GhFltpsBOBNxhRWORy-4")
     .then(response => response.json())
     .then(data => {
       var timezone = lookup(zip);
@@ -35,9 +37,9 @@ function calculateSunset(){
 
 /**
  * 
- * Main method of the program that calls functions to create inputs, get data from the Sunburst API,
- * create results from the data, rank the result if the user would like to view results in ranked order,
- * and saves the results in local storage.
+ * Main method of the program that calls functions to create inputs, get data from the Sunburst 
+ * API, create results from the data, rank the result if the user would like to view results in
+ * ranked order, and saves the results in local storage.
  * 
  * @param {object} location 
  * @param {string} timezone 
@@ -70,7 +72,8 @@ function calculate(location, timezone){
 
 /**
  * 
- * Returns boolean value containing whether or not the given zip code is in a valid format (5 digits).
+ * Returns boolean value containing whether or not the given zip code is in a valid format
+ * (5 digits).
  * 
  * @param {string} zip 
  * @returns {boolean} isZip
@@ -83,8 +86,9 @@ function validZip(zip) {
 
 /**
  * 
- * Creates and returns array of the inputs, including the location, the type (either sunrise or sunset), 
- * and the dates the sunrises/sunsets occur after, given the current date, the location, the type, and the array of days.
+ * Creates and returns array of the inputs, including the location, the type (either sunrise 
+ * or sunset), and the dates the sunrises/sunsets occur after, given the current date, the 
+ * location, the type, and the array of days.
  * 
  * @param {date} today 
  * @param {object} location 
@@ -107,9 +111,11 @@ function createInputs(today, location, type, days) {
 
 /**
  * 
- * Creates and returns array of the results, including the names of the days, the times of the sunrises/sunsets,
- * the qualities of the sunrises/sunsets, the quality percents of the sunrises/sunsets, descriptions of the sunrises/sunsets,
- * and the image paths for the sunrises/sunsets, given the current date, the days selected, the time zone, and the Sunburst API data.
+ * Creates and returns array of the results, including the names of the days, the times of the 
+ * sunrises/sunsets, the qualities of the sunrises/sunsets, the quality percents of the 
+ * sunrises/sunsets, descriptions of the sunrises/sunsets, and the image paths for the 
+ * sunrises/sunsets, given the current date, the days selected, the time zone, and the Sunburst 
+ * API data.
  * 
  * @param {date} today 
  * @param {int array} days 
@@ -121,9 +127,9 @@ function createInputs(today, location, type, days) {
 function createResults(today, days, timezone, data) {
   var dayNames = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
   var descriptions = ["Little to no color, with precipitation or a thick cloud layer often blocking a direct view of the sun.", 
-                      "Some color for a short time, with conditions ranging from mostly cloudy, or hazy, to clear, with little to no clouds at all levels.",
-                      "A fair amount of color, often multi-colored, lasting a considerable amount of time. Often caused by scattered clouds at multiple levels.", 
-                      "Extremely vibrant color lasting 30 minutes or more. Often caused by multiple arrangements of clouds at multiple levels, transitioning through multiple stages of vivid color."];
+  "Some color for a short time, with conditions ranging from mostly cloudy, or hazy, to clear, with little to no clouds at all levels.",
+  "A fair amount of color, often multi-colored, lasting a considerable amount of time. Often caused by scattered clouds at multiple levels.", 
+  "Extremely vibrant color lasting 30 minutes or more. Often caused by multiple arrangements of clouds at multiple levels, transitioning through multiple stages of vivid color."];
   var images = ["img/poor.jpg", "img/fair.jpg", "img/good.png", "img/great.jpg"];
 
   var results = [];
@@ -170,7 +176,8 @@ function createResults(today, days, timezone, data) {
 // https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php
 /**
  * 
- * Uses insertion sort to order the array of results from best sunrise/sunset quality to worst sunrise/sunset quality.
+ * Uses insertion sort to order the array of results from best sunrise/sunset quality to worst 
+ * sunrise/sunset quality.
  * 
  * @param {object array} results 
  */
@@ -189,7 +196,8 @@ function rank(results) {
 
 /**
  * 
- * Returns the type (sunrise or sunset) the user would like to view based on the status of the checkbox element "sunset".
+ * Returns the type (sunrise or sunset) the user would like to view based on the status of the 
+ * checkbox element "sunset".
  * 
  * @returns {string} type
  */
@@ -202,8 +210,10 @@ function getType() {
 
 /**
  * 
- * Returns an array of integers containing the value of the days relative to the current day that the user has selected.
- * Ex. the previous day would be stored in the array as -1, the current day as 0, two days after the current day as 2, etc.
+ * Returns an array of integers containing the value of the days relative to the current day that 
+ * the user has selected.
+ * Ex. the previous day would be stored in the array as -1, the current day as 0, two days after 
+ * the current day as 2, etc.
  * 
  * @returns {int array} days
  */
@@ -232,8 +242,8 @@ function getDays() {
 
 /**
  * 
- * Returns a boolean value containing whether or not the user would like to view the sunrise or sunset qualities in a ranked
- * order.
+ * Returns a boolean value containing whether or not the user would like to view the sunrise 
+ * or sunset qualities in a ranked order.
  * 
  * @returns {boolean} isRanked
  */
@@ -253,7 +263,8 @@ var slideIndex = 0;
 
 /**
  * 
- * Moves results slides n spaces (forward for positive values of n and backward for negative values of n).
+ * Moves results slides n spaces (forward for positive values of n and backward for negative 
+ * values of n).
  * 
  * @param {int} n 
  */
