@@ -5,4 +5,4 @@ curl -X "POST" "https://sunburst.sunsetwx.com/v1/login" \
   -d "grant_type=password" \
   -d "type=remember_me"
 
-"access_token":"698f1b90-3d4e-4270-ad85-3ebff93fee7a","token_type":"Bearer","expires_in":604800,"scope":"predictions","session":{"client_id":"c5231057-15e4-4e39-972b-c3000b7cb4fc","client_secret":"8lEYGDdCnejWpBAVUir6WzWMV8DE1o67","scope":"predictions"}}
+"access_token":"cc40930e-3018-4ea6-b4f3-07ff38fbd5af","token_type":"Bearer","expires_in":604800,"scope":"predictions","session":{"client_id":"81f8de97-1fca-49cb-8262-46dd97801c5b","client_secret":"v7XUiEFdKmCekDxc6RIhWHvb7QgeRh0M","scope":"predictions"}}S

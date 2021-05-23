@@ -2,8 +2,8 @@
 // https://sunburst.sunsetwx.com/v1/docs/
 // Variable created using Sunburst API from SunsetWx.
 let sunburst = new SunburstJS({
-  clientId: 'c5231057-15e4-4e39-972b-c3000b7cb4fc',
-  clientSecret: '8lEYGDdCnejWpBAVUir6WzWMV8DE1o67',
+  clientId: '81f8de97-1fca-49cb-8262-46dd97801c5b',
+  clientSecret: 'v7XUiEFdKmCekDxc6RIhWHvb7QgeRh0M',
   scope: ['predictions']
 });
 // end cited code
